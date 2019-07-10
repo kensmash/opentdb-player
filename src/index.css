@@ -1,0 +1,336 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSI+CjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzI4MjgyOCI+PC9yZWN0Pgo8Y2lyY2xlIGN4PSIzIiBjeT0iNC4zIiByPSIxLjgiIGZpbGw9IiMzOTM5MzkiPjwvY2lyY2xlPgo8Y2lyY2xlIGN4PSIzIiBjeT0iMyIgcj0iMS44IiBmaWxsPSJibGFjayI+PC9jaXJjbGU+CjxjaXJjbGUgY3g9IjEwLjUiIGN5PSIxMi41IiByPSIxLjgiIGZpbGw9IiMzOTM5MzkiPjwvY2lyY2xlPgo8Y2lyY2xlIGN4PSIxMC41IiBjeT0iMTEuMyIgcj0iMS44IiBmaWxsPSJibGFjayI+PC9jaXJjbGU+Cjwvc3ZnPg==");
+}
+
+/*--------------------------------------------------------------
+# Typography and type colors
+--------------------------------------------------------------*/
+
+a {
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+a:link {
+  color: #3476c4;
+}
+
+a:hover {
+  color: #b7f58f;
+}
+
+a:visited {
+  color: #3476c4;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #fff;
+}
+
+.answer--correctfeedback {
+  font-weight: 600;
+  color: #669744;
+}
+
+.answer--incorrectfeedback {
+  font-weight: 600;
+  color: #951014;
+}
+
+.error {
+  display: block;
+  font-weight: 600;
+  color: #8d1418;
+}
+
+.answer__correctanswer {
+  color: #669744;
+}
+
+.gamemeta p {
+  color: #ccc;
+}
+
+.playerprogress--pointstotal p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/*--------------------------------------------------------------
+# Buttons
+--------------------------------------------------------------*/
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #669744;
+  color: white;
+  border-radius: 0.5rem;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+.button--answerbutton {
+  background: white;
+  color: black;
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.button--answerbutton:active {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.button--answerbutton.selected {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: #1565c0;
+  color: white;
+}
+
+.button--correctanswer {
+  background: #669744;
+  color: white;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.button--incorrectanswer {
+  background: #951014;
+  color: white;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.button--singlenextround {
+  background: #1565c0;
+  color: white;
+}
+
+.button--textonly {
+  background: inherit;
+  color: #3476c4;
+  border-radius: 0;
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+
+#root {
+  position: relative;
+}
+
+.content-container {
+  width: 100%;
+  position: absolute;
+}
+
+/*--------------------------------------------------------------
+# Standing/Players Lists
+--------------------------------------------------------------*/
+
+.player,
+.playerresponse {
+  border-radius: 0.5rem;
+  background: white;
+}
+
+.playerprogress,
+.singleplayerprogress {
+  background: #669744;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.playerroundprogress {
+  background: #1565c0;
+  border-radius: 5rem;
+}
+
+.playerscoreprogress {
+  background: #669744;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.playerprogress--background {
+  background: rgba(180, 180, 180, 0.6);
+  border-radius: 0.5rem;
+}
+
+.roundprogress--background {
+  background: rgba(100, 100, 100, 0.5);
+  border-radius: 0.5rem;
+}
+
+/*--------------------------------------------------------------
+# Hover - hopefully will disable hover on touch devices
+--------------------------------------------------------------*/
+
+@media (hover: hover) {
+  button:hover,
+  button:focus {
+    background: #527d33;
+    text-decoration: none;
+  }
+
+  .button--changeoption:focus,
+  .button--changeoption:hover {
+    color: #bcbdbe;
+  }
+
+  .button--textonly:focus,
+  .button--textonly:hover {
+    background: inherit;
+    color: #1b569a;
+  }
+
+  .button--answerbutton:hover {
+    background: #669744;
+    color: white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .button--correctanswer:focus,
+  .button--correctanswer:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .button--incorrectanswer:focus,
+  .button--incorrectanswer:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .button--singlenextround:hover {
+    background: #5270cf;
+    color: white;
+  }
+}
+
+/*--------------------------------------------------------------
+# Categories and Difficulties
+--------------------------------------------------------------*/
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.difficulties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.category-list,
+.difficulties-list,
+.answers-list {
+  padding: 0;
+  list-style: none;
+}
+
+.category-list li,
+.difficulties-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  margin: 0.5em;
+  background: #669744;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.selectcategorytitle {
+  color: white;
+}
+
+.categorytitle,
+.questiontitle {
+  color: white;
+}
+
+/*--------------------------------------------------------------
+# Spinner
+--------------------------------------------------------------*/
+.spinner {
+  margin: 0 auto;
+  width: 100px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+
+  border-radius: 100%;
+  display: inline-block;
+  margin: 0 0.15rem;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

@@ -9,8 +9,8 @@ export default function ChooseDifficulty(props) {
 
   return (
     <div>
-      <h2>Choose Difficulty</h2>
-      <ul>
+      <h1>Choose Difficulty</h1>
+      <ul className="difficulties-grid difficulties-list">
         {trail.map((animation, index) => (
           <animated.li
             style={animation}

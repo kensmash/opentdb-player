@@ -1,4 +1,6 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
+import Answers from "./GamePlayComponents/Answers";
+import Feedback from "./GamePlayComponents/Feedback";
 
 export default function GamePlay(props) {
   const [questionindex, setQuestionindex] = useState(0);
@@ -41,33 +43,22 @@ export default function GamePlay(props) {
     advanceText = "Finish Game";
   }
   return (
-    <Fragment>
-      {gameover ? (
-        <div>
-          <h2>You got {score} out of 7 right.</h2>
-          <button onClick={() => props.newGameHandler()}>New Game</button>
-        </div>
-      ) : (
-        <div>
-          <p>Round {round}</p>
-          <h2>{questions[currentQuestionIndex].question}</h2>
-          <ul>
-            {questions[currentQuestionIndex].answers.map((answer, index) => (
-              <li key={index}>
-                <button onClick={() => submitAnswerHandler(answer)}>
-                  {answer.answer}
-                </button>
-              </li>
-            ))}
-          </ul>
-          {feedback !== "" && (
-            <div>
-              <h3>{feedback}</h3>
-              <button onClick={() => nextRoundHandler()}>{advanceText}</button>
-            </div>
-          )}
-        </div>
-      )}
-    </Fragment>
+    <div>
+      <p>Round {round}</p>
+      <div>
+        <h2>{questions[currentQuestionIndex].question}</h2>
+        <Answers
+          answers={questions[currentQuestionIndex].answers}
+          submitAnswerHandler={answer => submitAnswerHandler(answer)}
+        />
+        {feedback !== "" && (
+          <Feedback
+            feedback={feedback}
+            advanceText={advanceText}
+            nextRoundHandler={nextRoundHandler}
+          />
+        )}
+      </div>
+    </div>
   );
 }

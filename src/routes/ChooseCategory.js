@@ -8,6 +8,7 @@ export default function ChooseCategory(props) {
 
   const setCategoryHandler = category => {
     //dispatch here
+    //then push to new route
   };
 
   const trail = useTrail(state.categories.length, {

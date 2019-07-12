@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTrail, animated } from "react-spring";
 
+import GameContext from "../context";
+
 export default function ChooseDifficulty(props) {
+  const { state, dispatch } = useContext(GameContext);
+
+  const setDifficultyHandler = difficulty => {
+    //dispatch here
+  };
+
   const trail = useTrail(props.difficulties.length, {
     from: { opacity: 0 },
     to: { opacity: 1 }

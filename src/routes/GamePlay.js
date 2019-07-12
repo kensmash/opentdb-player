@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Answers from "./GamePlayComponents/Answers";
-import Feedback from "./GamePlayComponents/Feedback";
+import Answers from "..components/Answers";
+import Feedback from "..components/Feedback";
 
 export default function GamePlay(props) {
   const [questionindex, setQuestionindex] = useState(0);

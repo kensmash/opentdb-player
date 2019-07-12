@@ -29,12 +29,10 @@ const App = () => {
         const categories = await axios.get(
           "https://opentdb.com/api_category.php"
         );
-
         dispatch({
           type: "GET_CATEGORIES",
           payload: categories.data.trivia_categories
         });
-
         setIsLoading(false);
       } catch (error) {
         setIsError(true);

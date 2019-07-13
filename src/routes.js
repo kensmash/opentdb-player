@@ -27,14 +27,14 @@ const Main = () => {
   const { location } = useRouter();
 
   const transitions = useTransition(location, location => location.key, {
-    from: { opacity: 0 },
+    from: { opacity: 0, position: "absolute", width: "100%" },
     enter: { opacity: 1 },
     leave: { opacity: 0 }
   });
 
   return transitions.map(({ item, props, key }) => (
     <animated.div key={key} style={props}>
-      <Switch>
+      <Switch location={item}>
         <Route exact path="/" component={ChooseCategory} />
         <Route exact path="/difficulty" component={ChooseDifficulty} />
         <Route exact path={"/question/:_id"} component={GameQuestion} />

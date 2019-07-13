@@ -147,11 +147,6 @@ button:focus {
   position: relative;
 }
 
-.content-container {
-  width: 100%;
-  position: absolute;
-}
-
 /*--------------------------------------------------------------
 # Standing/Players Lists
 --------------------------------------------------------------*/

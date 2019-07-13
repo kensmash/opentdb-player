@@ -80,7 +80,7 @@ export default function ChooseDifficulty(props) {
   });
 
   return (
-    <div>
+    <>
       <h1>Category: {state.selectedCategory.name}</h1>
       <h1>Choose Difficulty</h1>
       <ul className="difficulties-grid difficulties-list">
@@ -94,6 +94,6 @@ export default function ChooseDifficulty(props) {
           </animated.li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }

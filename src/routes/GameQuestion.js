@@ -37,7 +37,7 @@ export default function GameQuestion(props) {
     advanceText = "Finish Game";
   }
   return (
-    <div>
+    <>
       <p>Round {state.round}</p>
       <div>
         <h2>{state.questions[questionindex].question}</h2>
@@ -53,6 +53,6 @@ export default function GameQuestion(props) {
           />
         )}
       </div>
-    </div>
+    </>
   );
 }

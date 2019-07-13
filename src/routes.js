@@ -9,6 +9,7 @@ import { useTransition, animated } from "react-spring";
 //routes
 import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
+import GameQuestion from "./routes/GameQuestion";
 
 function useRouter() {
   return useContext(__RouterContext);
@@ -36,6 +37,7 @@ const Main = () => {
       <Switch>
         <Route exact path="/" component={ChooseCategory} />
         <Route exact path="/difficulty" component={ChooseDifficulty} />
+        <Route exact path={"/question/:_id"} component={GameQuestion} />
       </Switch>
     </animated.div>
   ));

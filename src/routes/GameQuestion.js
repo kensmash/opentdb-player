@@ -1,54 +1,50 @@
-import React, { useState } from "react";
-import Answers from "..components/Answers";
-import Feedback from "..components/Feedback";
+import React, { useState, useContext } from "react";
+import Answers from "../components/Answers";
+import Feedback from "../components/Feedback";
+import GameContext from "../context";
 
 export default function GamePlay(props) {
-  const [questionindex, setQuestionindex] = useState(0);
-  const [round, setRound] = useState(1);
-  const [score, setScore] = useState(0);
+  const { state, dispatch } = useContext(GameContext);
   const [feedback, setFeedback] = useState("");
-  const [gameover, setGameover] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+
+  const questionindex = props.match.params._id - 1;
 
   const nextRoundHandler = () => {
-    if (questionindex === 0) {
-      return;
-    }
-    if (questionindex === props.questions.length) {
-      return setGameover(true);
+    if (questionindex === state.questions.length) {
+      setGameOver(true);
+      props.history.push("summary");
     } else {
-      setRound(round + 1);
-      setFeedback("");
+      dispatch({ type: "SET_ROUND", payload: state.round + 1 });
+      props.history.push(`/question/${state.round}`);
     }
   };
 
   const submitAnswerHandler = answer => {
-    setQuestionindex(questionindex + 1);
     if (answer.correct) {
-      setScore(score + 1);
+      dispatch({ type: "SET_SCORE", payload: state.score + 1 });
       setFeedback("Heck yeah son!");
     } else {
       setFeedback(
         `Turrible. The correct answer is ${
-          props.questions[questionindex].answers.find(answer => answer.correct)
+          state.questions[questionindex].answers.find(answer => answer.correct)
             .answer
         }.`
       );
     }
   };
 
-  const { questions } = props;
-  const currentQuestionIndex = round - 1;
   let advanceText = "Next Round";
-  if (questionindex === props.questions.length) {
+  if (gameOver) {
     advanceText = "Finish Game";
   }
   return (
     <div>
-      <p>Round {round}</p>
+      <p>Round {state.round}</p>
       <div>
-        <h2>{questions[currentQuestionIndex].question}</h2>
+        <h2>{state.questions[questionindex].question}</h2>
         <Answers
-          answers={questions[currentQuestionIndex].answers}
+          answers={state.questions[questionindex].answers}
           submitAnswerHandler={answer => submitAnswerHandler(answer)}
         />
         {feedback !== "" && (

@@ -7,8 +7,9 @@ export default function ChooseCategory(props) {
   const { state, dispatch } = useContext(GameContext);
 
   const setCategoryHandler = category => {
-    //dispatch here
+    dispatch({ type: "SET_CATEGORY", payload: category });
     //then push to new route
+    props.history.push("/difficulty");
   };
 
   const trail = useTrail(state.categories.length, {

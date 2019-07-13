@@ -1,5 +1,24 @@
 export default function reducer(state, action) {
   switch (action.type) {
+    case "START_LOADING": {
+      return {
+        ...state,
+        isLoading: true
+      };
+    }
+    case "LOADING_ERROR": {
+      return {
+        ...state,
+        isLoading: false,
+        loadingError: true
+      };
+    }
+    case "LOADING_SUCCESS": {
+      return {
+        ...state,
+        isLoading: false
+      };
+    }
     case "GET_TOKEN": {
       return {
         ...state,
@@ -10,6 +29,12 @@ export default function reducer(state, action) {
       return {
         ...state,
         categories: action.payload
+      };
+    }
+    case "SET_CATEGORY": {
+      return {
+        ...state,
+        selectedCategory: action.payload
       };
     }
     case "GET_QUESTIONS": {

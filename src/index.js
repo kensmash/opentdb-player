@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState, useEffect } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 //context stuff
@@ -14,9 +14,6 @@ const App = () => {
   //set up global context
   const initialState = useContext(GameContext);
   const [state, dispatch] = useReducer(GameReducer, initialState);
-  //set up local state
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
 
   //on component load, fetch data and update our context token and categories state
   useEffect(() => {
@@ -33,9 +30,13 @@ const App = () => {
           type: "GET_CATEGORIES",
           payload: categories.data.trivia_categories
         });
-        setIsLoading(false);
+        dispatch({
+          type: "LOADING_SUCCESS"
+        });
       } catch (error) {
-        setIsError(true);
+        dispatch({
+          type: "LOADING_ERROR"
+        });
       }
     };
 
@@ -44,7 +45,13 @@ const App = () => {
 
   return (
     <GameContext.Provider value={{ state, dispatch }}>
-      {isLoading ? <div>loading...</div> : <Routes />}
+      {state.isLoading ? (
+        <div>loading...</div>
+      ) : state.loadingError ? (
+        <div>something went wrong</div>
+      ) : (
+        <Routes />
+      )}
     </GameContext.Provider>
   );
 };

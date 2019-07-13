@@ -3,20 +3,18 @@ import Answers from "../components/Answers";
 import Feedback from "../components/Feedback";
 import GameContext from "../context";
 
-export default function GamePlay(props) {
+export default function GameQuestion(props) {
   const { state, dispatch } = useContext(GameContext);
   const [feedback, setFeedback] = useState("");
-  const [gameOver, setGameOver] = useState(false);
 
   const questionindex = props.match.params._id - 1;
+  const nextquestion = Number(props.match.params._id) + 1;
 
   const nextRoundHandler = () => {
     if (questionindex === state.questions.length) {
-      setGameOver(true);
-      props.history.push("summary");
+      props.history.push("/summary");
     } else {
-      dispatch({ type: "SET_ROUND", payload: state.round + 1 });
-      props.history.push(`/question/${state.round}`);
+      props.history.push(`/question/${nextquestion}`);
     }
   };
 
@@ -35,7 +33,7 @@ export default function GamePlay(props) {
   };
 
   let advanceText = "Next Round";
-  if (gameOver) {
+  if (questionindex === state.questions.length) {
     advanceText = "Finish Game";
   }
   return (

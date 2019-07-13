@@ -49,12 +49,6 @@ export default function reducer(state, action) {
         score: action.payload
       };
     }
-    case "SET_ROUND": {
-      return {
-        ...state,
-        round: action.payload
-      };
-    }
     case "REMOVE_QUESTIONS": {
       return {
         ...state,

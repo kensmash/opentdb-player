@@ -20,69 +20,79 @@ export default function reducer(state, action) {
       };
     }
     case "GET_TOKEN": {
+      localStorage.setItem("apiToken", action.payload);
       return {
         ...state,
         apiToken: action.payload
       };
     }
     case "GET_CATEGORIES": {
+      localStorage.setItem("categories", JSON.stringify(action.payload));
       return {
         ...state,
         categories: action.payload
       };
     }
     case "SET_CATEGORY": {
+      localStorage.setItem("selectedCategory", JSON.stringify(action.payload));
       return {
         ...state,
         selectedCategory: action.payload
       };
     }
     case "SET_DIFFICULTY": {
+      localStorage.setItem("selectedDifficulty", action.payload);
       return {
         ...state,
         selectedDifficulty: action.payload
       };
     }
     case "GET_QUESTIONS": {
+      localStorage.setItem("questions", JSON.stringify(action.payload));
       return {
         ...state,
         questions: action.payload
       };
     }
     case "START_GAME": {
+      localStorage.setItem("gameStarted", true);
       return {
         ...state,
         gameStarted: true
       };
     }
     case "END_GAME": {
+      localStorage.setItem("gameEnded", true);
       return {
         ...state,
         gameEnded: true
       };
     }
     case "SET_ROUND": {
+      localStorage.setItem("round", action.payload);
       return {
         ...state,
         round: action.payload
       };
     }
     case "SET_SCORE": {
+      localStorage.setItem("score", action.payload);
       return {
         ...state,
         score: action.payload
       };
     }
-    case "REMOVE_QUESTIONS": {
-      return {
-        ...state,
-        questions: []
-      };
-    }
     case "RESET_GAME": {
+      localStorage.removeItem("selectedCategory");
+      localStorage.removeItem("selectedDifficulty");
+      localStorage.removeItem("questions");
+      localStorage.removeItem("gameStarted");
+      localStorage.removeItem("gameEnded");
+      localStorage.removeItem("round");
+      localStorage.removeItem("score");
       return {
         ...state,
-        selectedCategory: "",
+        selectedCategory: {},
         selectedDifficulty: "",
         questions: [],
         gameStarted: false,

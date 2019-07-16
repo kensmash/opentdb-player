@@ -77,7 +77,7 @@ export default function ConfirmGame(props) {
   };
 
   return (
-    <div className="content-container setup-container">
+    <div className="content-container setup-container confirm-container">
       <h1>Category: {state.selectedCategory.name}</h1>
       <h1>
         Difficulty:{" "}

@@ -19,20 +19,68 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = await axios.get(
-          "https://opentdb.com/api_token.php?command=request"
-        );
-        dispatch({ type: "GET_TOKEN", payload: token.data.token });
-        const categories = await axios.get(
-          "https://opentdb.com/api_category.php"
-        );
+        let token;
+        const localToken = localStorage.getItem("apiToken");
+        if (!localToken) {
+          token = await axios.get(
+            "https://opentdb.com/api_token.php?command=request"
+          );
+        }
+        dispatch({
+          type: "GET_TOKEN",
+          payload: localToken ? localToken : token.data.token
+        });
+        let categories;
+        const localCats = JSON.parse(localStorage.getItem("categories"));
+
+        if (!localCats) {
+          categories = await axios.get("https://opentdb.com/api_category.php");
+        }
         dispatch({
           type: "GET_CATEGORIES",
-          payload: categories.data.trivia_categories
+          payload: localCats ? localCats : categories.data.trivia_categories
         });
         dispatch({
           type: "LOADING_SUCCESS"
         });
+        //check other stuff in local storage
+        //category
+        const localCategory = JSON.parse(
+          localStorage.getItem("selectedCategory")
+        );
+        if (localCategory) {
+          dispatch({ type: "SET_CATEGORY", payload: localCategory });
+        }
+        //difficulty
+        const localDifficulty = localStorage.getItem("selectedDifficulty");
+        if (localDifficulty) {
+          dispatch({ type: "SET_DIFFICULTY", payload: localDifficulty });
+        }
+        //questions
+        const localQuestions = JSON.parse(localStorage.getItem("questions"));
+        if (localQuestions) {
+          dispatch({ type: "GET_QUESTIONS", payload: localQuestions });
+        }
+        //game started
+        const localGameStarted = localStorage.getItem("gameStarted");
+        if (localGameStarted) {
+          dispatch({ type: "START_GAME", payload: localGameStarted });
+        }
+        //game ended
+        const localGameEnded = localStorage.getItem("gameEnded");
+        if (localGameEnded) {
+          dispatch({ type: "END_GAME", payload: localGameEnded });
+        }
+        //round
+        const localRound = localStorage.getItem("round");
+        if (localRound) {
+          dispatch({ type: "SET_ROUND", payload: localRound });
+        }
+        //score
+        const localScore = localStorage.getItem("score");
+        if (localScore) {
+          dispatch({ type: "SET_SCORE", payload: localScore });
+        }
       } catch (error) {
         dispatch({
           type: "LOADING_ERROR"

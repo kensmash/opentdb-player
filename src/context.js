@@ -6,7 +6,7 @@ const GameContext = React.createContext({
   apiToken: "",
   rounds: 7,
   categories: [],
-  selectedCategory: "",
+  selectedCategory: {},
   selectedDifficulty: "",
   difficulties: ["easy", "medium", "hard", "any"],
   questions: [],

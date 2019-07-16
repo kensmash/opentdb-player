@@ -32,6 +32,7 @@ a:visited {
 
 h1,
 h2 {
+  margin-top: 0;
   text-align: center;
   color: #fff;
 }
@@ -136,6 +137,11 @@ h2 {
   border-radius: 0;
 }
 
+.button:focus,
+.button:active {
+  outline: 0;
+}
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
@@ -146,6 +152,15 @@ h2 {
 
 .content-container {
   padding: 0 30px 30px 30px;
+}
+
+.setup-container {
+  margin-top: -15px;
+}
+
+.question-container,
+.summary-container {
+  padding-top: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -199,12 +214,12 @@ h2 {
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .difficulties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .category-list,
@@ -224,6 +239,10 @@ h2 {
   background: #669744;
   color: white;
   border-radius: 0.5rem;
+}
+
+.difficulties-list li {
+  text-transform: capitalize;
 }
 
 .selectcategorytitle {

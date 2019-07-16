@@ -12,7 +12,7 @@ export default function ChooseCategory(props) {
   };
 
   return (
-    <div className="content-container">
+    <div className="content-container setup-container">
       <h1>Choose a Category</h1>
       <ul className="category-grid category-list">
         {state.categories.map(cat => (

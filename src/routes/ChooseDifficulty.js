@@ -12,7 +12,7 @@ export default function ChooseDifficulty(props) {
   };
 
   return (
-    <div className="content-container">
+    <div className="content-container setup-container">
       <h1>Choose Difficulty</h1>
       <ul className="difficulties-grid difficulties-list">
         {state.difficulties.map(diff => (

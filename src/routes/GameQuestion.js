@@ -54,7 +54,7 @@ export default function GameQuestion(props) {
     advanceText = "Finish Game";
   }
   return (
-    <div className="content-container">
+    <div className="content-container question-container">
       <h2>{state.questions[questionindex].question}</h2>
       <Answers
         answers={state.questions[questionindex].answers}

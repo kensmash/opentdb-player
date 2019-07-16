@@ -77,9 +77,14 @@ export default function ConfirmGame(props) {
   };
 
   return (
-    <div className="content-container">
+    <div className="content-container setup-container">
       <h1>Category: {state.selectedCategory.name}</h1>
-      <h1>Difficulty: {state.selectedDifficulty}</h1>
+      <h1>
+        Difficulty:{" "}
+        <span style={{ textTransform: "capitalize" }}>
+          {state.selectedDifficulty}
+        </span>
+      </h1>
       <button className="button" onClick={() => startGameHandler()}>
         Start Game
       </button>

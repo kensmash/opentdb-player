@@ -12,7 +12,7 @@ export default function Summary(props) {
   };
 
   return (
-    <div className="content-container">
+    <div className="content-container summary-container">
       <h1>
         You got {state.score} out of {state.rounds} correct.
       </h1>

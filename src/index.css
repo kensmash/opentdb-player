@@ -147,39 +147,38 @@ button:focus {
   position: relative;
 }
 
+.content-container {
+  padding: 30px;
+}
+
 /*--------------------------------------------------------------
 # Standing/Players Lists
 --------------------------------------------------------------*/
-
-.player,
-.playerresponse {
-  border-radius: 0.5rem;
-  background: white;
+.roundprogress--container {
+  padding: 30px;
 }
 
-.playerprogress,
-.singleplayerprogress {
-  background: #669744;
-  border-radius: 0.5rem 0 0 0.5rem;
+.roundprogress {
+  position: relative;
+  height: 1em;
+  background: rgba(100, 100, 100, 0.5);
+  border-radius: 0.5rem;
 }
 
 .playerroundprogress {
+  position: absolute;
+  transition: transform 400ms ease, opacity 400ms ease;
+  height: 1em;
   background: #1565c0;
-  border-radius: 5rem;
-}
-
-.playerscoreprogress {
-  background: #669744;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-
-.playerprogress--background {
-  background: rgba(180, 180, 180, 0.6);
   border-radius: 0.5rem;
 }
 
-.roundprogress--background {
-  background: rgba(100, 100, 100, 0.5);
+.playerscoreprogress {
+  position: absolute;
+  z-index: 5;
+  transition: transform 400ms ease, opacity 400ms ease;
+  height: 1em;
+  background: #669744;
   border-radius: 0.5rem;
 }
 

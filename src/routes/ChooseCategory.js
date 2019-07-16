@@ -18,7 +18,7 @@ export default function ChooseCategory(props) {
   });
 
   return (
-    <>
+    <div className="content-container">
       <h1>Choose a Category</h1>
       <ul className="category-grid category-list">
         {trail.map((animation, index) => (
@@ -31,6 +31,6 @@ export default function ChooseCategory(props) {
           </animated.li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

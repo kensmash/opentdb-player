@@ -46,27 +46,24 @@ export default function GameQuestion(props) {
     advanceText = "Finish Game";
   }
   return (
-    <>
-      <p>Round {state.round}</p>
-      <div>
-        <h2>{state.questions[questionindex].question}</h2>
-        <Answers
-          answers={state.questions[questionindex].answers}
-          submitAnswerHandler={answer => submitAnswerHandler(answer)}
-        />
-        {transition.map(
-          ({ item, key, props: animation }) =>
-            item && (
-              <Feedback
-                key={key}
-                animation={animation}
-                feedback={feedback}
-                advanceText={advanceText}
-                nextRoundHandler={nextRoundHandler}
-              />
-            )
-        )}
-      </div>
-    </>
+    <div className="content-container">
+      <h2>{state.questions[questionindex].question}</h2>
+      <Answers
+        answers={state.questions[questionindex].answers}
+        submitAnswerHandler={answer => submitAnswerHandler(answer)}
+      />
+      {transition.map(
+        ({ item, key, props: animation }) =>
+          item && (
+            <Feedback
+              key={key}
+              animation={animation}
+              feedback={feedback}
+              advanceText={advanceText}
+              nextRoundHandler={nextRoundHandler}
+            />
+          )
+      )}
+    </div>
   );
 }

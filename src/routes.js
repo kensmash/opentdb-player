@@ -10,14 +10,25 @@ import { useTransition, animated } from "react-spring";
 import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
 import GameQuestion from "./routes/GameQuestion";
+//context
+import GameContext from "./context";
 
 function useRouter() {
   return useContext(__RouterContext);
 }
 
 const Routes = () => {
+  const { state } = useContext(GameContext);
   return (
     <Router>
+      <div className="roundprogress--container">
+        <div className="roundprogress">
+          <div className="playerroundprogress">
+            <p>Round {state.round}</p>
+          </div>
+          <div className="playerscoreprogress"> </div>
+        </div>
+      </div>
       <Main />
     </Router>
   );

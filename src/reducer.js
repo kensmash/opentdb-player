@@ -37,6 +37,12 @@ export default function reducer(state, action) {
         selectedCategory: action.payload
       };
     }
+    case "SET_DIFFICULTY": {
+      return {
+        ...state,
+        selectedDifficulty: action.payload
+      };
+    }
     case "GET_QUESTIONS": {
       return {
         ...state,

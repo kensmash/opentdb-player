@@ -11,6 +11,7 @@ import RoundProgress from "./components/RoundProgress";
 //routes
 import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
+import ConfirmGame from "./routes/ConfirmGame";
 import GameQuestion from "./routes/GameQuestion";
 //context
 import GameContext from "./context";
@@ -58,6 +59,7 @@ const Main = () => {
       <Switch location={item}>
         <Route exact path="/" component={ChooseCategory} />
         <Route exact path="/difficulty" component={ChooseDifficulty} />
+        <Route exact path="/confirmgame" component={ConfirmGame} />
         <Route exact path={"/question/:_id"} component={GameQuestion} />
       </Switch>
     </animated.div>

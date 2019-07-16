@@ -10,7 +10,9 @@ export default function Feedback({
   return (
     <animated.div style={animation}>
       <h3>{feedback}</h3>
-      <button onClick={() => nextRoundHandler()}>{advanceText}</button>
+      <button className="button" onClick={() => nextRoundHandler()}>
+        {advanceText}
+      </button>
     </animated.div>
   );
 }

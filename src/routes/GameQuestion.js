@@ -7,6 +7,9 @@ import GameContext from "../context";
 
 export default function GameQuestion(props) {
   const { state, dispatch } = useContext(GameContext);
+  const [answered, setAnswered] = useState(false);
+  const [playerAnswer, setPlayerAnswer] = useState(false);
+  const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState("");
 
   const transition = useTransition(feedback, null, {
@@ -30,7 +33,10 @@ export default function GameQuestion(props) {
   };
 
   const submitAnswerHandler = answer => {
+    setAnswered(true);
+    setPlayerAnswer(answer.answer);
     if (answer.correct) {
+      setCorrect(true);
       dispatch({ type: "SET_SCORE", payload: state.score + 1 });
       setFeedback("Heck yeah son!");
     } else {
@@ -52,6 +58,9 @@ export default function GameQuestion(props) {
       <h2>{state.questions[questionindex].question}</h2>
       <Answers
         answers={state.questions[questionindex].answers}
+        answered={answered}
+        playerAnswer={playerAnswer}
+        correct={correct}
         submitAnswerHandler={answer => submitAnswerHandler(answer)}
       />
       {transition.map(

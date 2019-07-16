@@ -1,10 +1,16 @@
 import React from "react";
+import { animated } from "react-spring";
 
-export default function Feedback({ feedback, advanceText, nextRoundHandler }) {
+export default function Feedback({
+  animation,
+  feedback,
+  advanceText,
+  nextRoundHandler
+}) {
   return (
-    <div>
+    <animated.div style={animation}>
       <h3>{feedback}</h3>
       <button onClick={() => nextRoundHandler()}>{advanceText}</button>
-    </div>
+    </animated.div>
   );
 }

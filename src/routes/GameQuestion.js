@@ -1,17 +1,26 @@
 import React, { useState, useContext } from "react";
 import Answers from "../components/Answers";
 import Feedback from "../components/Feedback";
+import { useTransition } from "react-spring";
+
 import GameContext from "../context";
 
 export default function GameQuestion(props) {
   const { state, dispatch } = useContext(GameContext);
   const [feedback, setFeedback] = useState("");
 
-  const questionindex = props.match.params._id - 1;
-  const nextquestion = Number(props.match.params._id) + 1;
+  const transition = useTransition(feedback, null, {
+    from: { opacity: 0, transform: `translate3d(0, -40px, 0)` },
+    enter: { opacity: 1, transform: `translate3d(0, 0px, 0)` },
+    leave: { opacity: 0, transform: `translate3d(0, -40px, 0)` }
+  });
+
+  const qid = Number(props.match.params._id);
+  const questionindex = qid - 1;
+  const nextquestion = qid + 1;
 
   const nextRoundHandler = () => {
-    if (questionindex === state.questions.length) {
+    if (qid === state.questions.length) {
       props.history.push("/summary");
     } else {
       props.history.push(`/question/${nextquestion}`);
@@ -33,7 +42,7 @@ export default function GameQuestion(props) {
   };
 
   let advanceText = "Next Round";
-  if (questionindex === state.questions.length) {
+  if (qid === state.questions.length) {
     advanceText = "Finish Game";
   }
   return (
@@ -45,12 +54,17 @@ export default function GameQuestion(props) {
           answers={state.questions[questionindex].answers}
           submitAnswerHandler={answer => submitAnswerHandler(answer)}
         />
-        {feedback !== "" && (
-          <Feedback
-            feedback={feedback}
-            advanceText={advanceText}
-            nextRoundHandler={nextRoundHandler}
-          />
+        {transition.map(
+          ({ item, key, props: animation }) =>
+            item && (
+              <Feedback
+                key={key}
+                animation={animation}
+                feedback={feedback}
+                advanceText={advanceText}
+                nextRoundHandler={nextRoundHandler}
+              />
+            )
         )}
       </div>
     </>

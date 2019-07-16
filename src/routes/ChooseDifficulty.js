@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useTrail, animated } from "react-spring";
 import axios from "axios";
+import he from "he";
+
 import GameContext from "../context";
 
 export default function ChooseDifficulty(props) {
@@ -9,11 +11,11 @@ export default function ChooseDifficulty(props) {
   const setDifficultyHandler = async difficulty => {
     //fetch questions
     dispatch({ type: "IS_LOADING" });
-    let request = `https://opentdb.com/api.php?amount=10&category=${
+    let request = `https://opentdb.com/api.php?amount=7&category=${
       state.selectedCategory.id
     }`;
     if (difficulty !== "any") {
-      request = `https://opentdb.com/api.php?amount=10&category=${
+      request = `https://opentdb.com/api.php?amount=7&category=${
         state.selectedCategory.id
       }&difficulty=${difficulty}`;
     }
@@ -30,11 +32,11 @@ export default function ChooseDifficulty(props) {
           shuffledQuestions.forEach(function(question) {
             const incorrectAnswers = question.incorrect_answers;
             const answersArray = incorrectAnswers.map(answer => ({
-              answer: answer,
+              answer: he.decode(answer),
               correct: false
             }));
             const correctAnswerObject = {
-              answer: question.correct_answer,
+              answer: he.decode(question.correct_answer),
               correct: true
             };
             answersArray.push(correctAnswerObject);
@@ -51,7 +53,7 @@ export default function ChooseDifficulty(props) {
               });
             }
             const questionInformation = {
-              question: question.question,
+              question: he.decode(question.question),
               answers: sortedAnswers
             };
             parsedQuestions.push(questionInformation);

@@ -74,12 +74,12 @@ const App = () => {
         //round
         const localRound = localStorage.getItem("round");
         if (localRound) {
-          dispatch({ type: "SET_ROUND", payload: localRound });
+          dispatch({ type: "SET_ROUND", payload: Number(localRound) });
         }
         //score
         const localScore = localStorage.getItem("score");
         if (localScore) {
-          dispatch({ type: "SET_SCORE", payload: localScore });
+          dispatch({ type: "SET_SCORE", payload: Number(localScore) });
         }
       } catch (error) {
         dispatch({

@@ -16,8 +16,13 @@ export default function ChooseDifficulty(props) {
       <h1>Choose Difficulty</h1>
       <ul className="difficulties-grid difficulties-list">
         {state.difficulties.map(diff => (
-          <li key={diff} onClick={() => setDifficultyHandler(diff)}>
-            {diff}
+          <li key={diff}>
+            <button
+              className="button button--setupbutton"
+              onClick={() => setDifficultyHandler(diff)}
+            >
+              <span style={{ textTransform: "capitalize" }}>{diff}</span>
+            </button>
           </li>
         ))}
       </ul>

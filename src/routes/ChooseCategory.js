@@ -16,8 +16,13 @@ export default function ChooseCategory(props) {
       <h1>Choose a Category</h1>
       <ul className="category-grid category-list">
         {state.categories.map(cat => (
-          <li key={cat.id} onClick={() => setCategoryHandler(cat)}>
-            {cat.name}
+          <li key={cat.id}>
+            <button
+              className="button button--setupbutton"
+              onClick={() => setCategoryHandler(cat)}
+            >
+              {cat.name}
+            </button>
           </li>
         ))}
       </ul>

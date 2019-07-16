@@ -85,7 +85,10 @@ export default function ConfirmGame(props) {
           {state.selectedDifficulty}
         </span>
       </h1>
-      <button className="button" onClick={() => startGameHandler()}>
+      <button
+        className="button button--setupbutton"
+        onClick={() => startGameHandler()}
+      >
         Start Game
       </button>
     </div>

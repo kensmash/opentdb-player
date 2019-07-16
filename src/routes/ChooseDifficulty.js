@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useTrail, animated } from "react-spring";
 import axios from "axios";
 import he from "he";
 
@@ -60,6 +59,7 @@ export default function ChooseDifficulty(props) {
           });
           dispatch({ type: "GET_QUESTIONS", payload: parsedQuestions });
           dispatch({ type: "LOADING_SUCCESS" });
+          dispatch({ type: "START_GAME" });
           //then push to new route
           props.history.push("/question/1");
         } else {
@@ -76,24 +76,15 @@ export default function ChooseDifficulty(props) {
     }
   };
 
-  const trail = useTrail(state.difficulties.length, {
-    from: { opacity: 0 },
-    to: { opacity: 1 }
-  });
-
   return (
     <div className="content-container">
       <h1>Category: {state.selectedCategory.name}</h1>
       <h1>Choose Difficulty</h1>
       <ul className="difficulties-grid difficulties-list">
-        {trail.map((animation, index) => (
-          <animated.li
-            style={animation}
-            key={state.difficulties[index]}
-            onClick={() => setDifficultyHandler(state.difficulties[index])}
-          >
-            {state.difficulties[index]}
-          </animated.li>
+        {state.difficulties.map(diff => (
+          <li key={diff} onClick={() => setDifficultyHandler(diff)}>
+            {diff}
+          </li>
         ))}
       </ul>
     </div>

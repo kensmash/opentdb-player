@@ -6,6 +6,8 @@ import {
   __RouterContext
 } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
+//components
+import RoundProgress from "./components/RoundProgress";
 //routes
 import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
@@ -19,16 +21,19 @@ function useRouter() {
 
 const Routes = () => {
   const { state } = useContext(GameContext);
+
+  const percentage = state.gameStarted
+    ? state.gameEnded
+      ? "100%"
+      : ((state.round - 1) / state.rounds) * 100 + "%"
+    : 0;
+
   return (
     <Router>
-      <div className="roundprogress--container">
-        <div className="roundprogress">
-          <div className="playerroundprogress">
-            <p>Round {state.round}</p>
-          </div>
-          <div className="playerscoreprogress"> </div>
-        </div>
-      </div>
+      <RoundProgress
+        gameStarted={state.gameStarted}
+        progressWidth={percentage}
+      />
       <Main />
     </Router>
   );

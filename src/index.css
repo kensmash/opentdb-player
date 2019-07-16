@@ -159,6 +159,7 @@ button:focus {
 }
 
 .roundprogress {
+  transition: width 400ms ease;
   position: relative;
   height: 1em;
   background: rgba(100, 100, 100, 0.5);
@@ -166,19 +167,10 @@ button:focus {
 }
 
 .playerroundprogress {
+  transition: width 400ms ease;
   position: absolute;
-  transition: transform 400ms ease, opacity 400ms ease;
   height: 1em;
   background: #1565c0;
-  border-radius: 0.5rem;
-}
-
-.playerscoreprogress {
-  position: absolute;
-  z-index: 5;
-  transition: transform 400ms ease, opacity 400ms ease;
-  height: 1em;
-  background: #669744;
   border-radius: 0.5rem;
 }
 

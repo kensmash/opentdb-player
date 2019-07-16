@@ -10,6 +10,9 @@ const GameContext = React.createContext({
   difficulties: ["easy", "medium", "hard", "any"],
   selectedDifficulty: "",
   questions: [],
+  gameStarted: false,
+  gameEnded: false,
+  round: 1,
   score: 0
 });
 

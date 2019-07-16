@@ -43,6 +43,24 @@ export default function reducer(state, action) {
         questions: action.payload
       };
     }
+    case "START_GAME": {
+      return {
+        ...state,
+        gameStarted: true
+      };
+    }
+    case "END_GAME": {
+      return {
+        ...state,
+        gameEnded: true
+      };
+    }
+    case "SET_ROUND": {
+      return {
+        ...state,
+        round: action.payload
+      };
+    }
     case "SET_SCORE": {
       return {
         ...state,

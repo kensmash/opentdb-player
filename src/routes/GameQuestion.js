@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Answers from "../components/Answers";
 import Feedback from "../components/Feedback";
 import { useTransition } from "react-spring";
-
+//context
 import GameContext from "../context";
 
 export default function GameQuestion(props) {
@@ -21,8 +21,10 @@ export default function GameQuestion(props) {
 
   const nextRoundHandler = () => {
     if (qid === state.questions.length) {
+      dispatch({ type: "END_GAME" });
       props.history.push("/summary");
     } else {
+      dispatch({ type: "SET_ROUND", payload: state.round + 1 });
       props.history.push(`/question/${nextquestion}`);
     }
   };

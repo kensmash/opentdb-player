@@ -13,6 +13,7 @@ import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
 import ConfirmGame from "./routes/ConfirmGame";
 import GameQuestion from "./routes/GameQuestion";
+import GameSummary from "./routes/GameSummary";
 //context
 import GameContext from "./context";
 
@@ -61,6 +62,7 @@ const Main = () => {
         <Route exact path="/difficulty" component={ChooseDifficulty} />
         <Route exact path="/confirmgame" component={ConfirmGame} />
         <Route exact path={"/question/:_id"} component={GameQuestion} />
+        <Route exact path="/summary" component={GameSummary} />
       </Switch>
     </animated.div>
   ));

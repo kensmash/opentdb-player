@@ -10,18 +10,22 @@ export default function Answers({
   return (
     <ul className="answers-list">
       {answers.map((answer, index) => (
-        <li
-          key={index}
-          className={`button button--answerbutton ${
-            answered && playerAnswer === answer.answer
-              ? correct
-                ? "button--correctanswer"
-                : "button--incorrectanswer"
-              : null
-          }`}
-          onClick={() => submitAnswerHandler(answer)}
-        >
-          {answer.answer}
+        <li key={index}>
+          <button
+            className={`${
+              answered
+                ? playerAnswer === answer.answer
+                  ? correct
+                    ? "button button--correctanswer"
+                    : "button button--incorrectanswer"
+                  : "button button--disabledbutton"
+                : "button button--answerbutton"
+            }`}
+            disabled={answered}
+            onClick={() => submitAnswerHandler(answer)}
+          >
+            {answer.answer}
+          </button>
         </li>
       ))}
     </ul>

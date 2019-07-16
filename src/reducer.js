@@ -79,6 +79,18 @@ export default function reducer(state, action) {
         questions: []
       };
     }
+    case "RESET_GAME": {
+      return {
+        ...state,
+        selectedCategory: "",
+        selectedDifficulty: "",
+        questions: [],
+        gameStarted: false,
+        gameEnded: false,
+        round: 1,
+        score: 0
+      };
+    }
     default:
       return state;
   }

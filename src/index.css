@@ -89,7 +89,8 @@ h2 {
   outline-offset: -4px;
 }
 
-.button--answerbutton {
+.button--answerbutton,
+.button--disabledbutton {
   background: white;
   color: black;
   width: 100%;
@@ -111,19 +112,17 @@ h2 {
 }
 
 .button--correctanswer {
+  margin: 0.5em 0;
+  width: 100%;
   background: #669744;
   color: white;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
 }
 
 .button--incorrectanswer {
+  margin: 0.5em 0;
+  width: 100%;
   background: #951014;
   color: white;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
 }
 
 .button--singlenextround {
@@ -177,17 +176,6 @@ h2 {
 --------------------------------------------------------------*/
 
 @media (hover: hover) {
-  button:hover,
-  button:focus {
-    background: #527d33;
-    text-decoration: none;
-  }
-
-  .button--changeoption:focus,
-  .button--changeoption:hover {
-    color: #bcbdbe;
-  }
-
   .button--textonly:focus,
   .button--textonly:hover {
     background: inherit;
@@ -197,28 +185,11 @@ h2 {
   .button--answerbutton:hover {
     background: #669744;
     color: white;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
   }
 
-  .button--correctanswer:focus,
-  .button--correctanswer:hover {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .button--incorrectanswer:focus,
-  .button--incorrectanswer:hover {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .button--singlenextround:hover {
-    background: #5270cf;
-    color: white;
+  button:disabled:hover,
+  button[disabled]:hover {
+    pointer-events: none;
   }
 }
 
@@ -269,6 +240,26 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.answers-list li {
+  width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Feedback
+--------------------------------------------------------------*/
+
+.feedback-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-text {
+  color: white;
 }
 
 /*--------------------------------------------------------------

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import he from "he";
 //context
@@ -6,30 +6,41 @@ import GameContext from "../context";
 
 export default function ConfirmGame(props) {
   const { state, dispatch } = useContext(GameContext);
+  const [tokenRetry, setTokenRetry] = useState(0);
 
   const clearTokenHandler = async () => {
-    const newToken = await axios.get(
-      `https://opentdb.com/api_token.php?command=reset&token=${state.apiToken}`
-    );
-    dispatch({
-      type: "GET_TOKEN",
-      payload: newToken.data.token
-    });
-    startGameHandler();
+    setTokenRetry(tokenRetry + 1);
+    if (tokenRetry <= 2) {
+      const newToken = await axios.get(
+        `https://opentdb.com/api_token.php?command=reset&token=${
+          state.apiToken
+        }`
+      );
+      dispatch({
+        type: "GET_TOKEN",
+        payload: newToken.data.token
+      });
+      startGameHandler();
+    } else {
+      localStorage.removeItem("apiToken");
+      return startGameHandler();
+    }
   };
 
   const startGameHandler = async () => {
+    let token, difficulty;
+    if (state.apiToken) {
+      token = `&token=${state.apiToken}`;
+    }
+    if (state.selectedDifficulty !== "any") {
+      difficulty = `&difficulty=${state.selectedDifficulty}`;
+    }
     //fetch questions
     dispatch({ type: "IS_LOADING" });
-    let request = `https://opentdb.com/api.php?amount=7&category=${
+    const request = `https://opentdb.com/api.php?amount=7&category=${
       state.selectedCategory.id
-    }&token=${state.apiToken}`;
-    if (state.selectedDifficulty !== "any") {
-      request = `https://opentdb.com/api.php?amount=7&category=${
-        state.selectedCategory.id
-      }&difficulty=${state.selectedDifficulty}&token=${state.apiToken}`;
-    }
-
+    }${difficulty}${token}`;
+    console.log("request", request);
     try {
       axios.get(request).then(response => {
         //on success

@@ -131,6 +131,10 @@ h2 {
   outline: 0;
 }
 
+.button:active {
+  transform: scale(0.94);
+}
+
 /*--------------------------------------------------------------
 # Hover - hopefully will disable hover on touch devices
 --------------------------------------------------------------*/
@@ -139,7 +143,7 @@ h2 {
   .button--setupbutton:hover,
   .button--setupbutton:focus {
     background: white;
-    color: #669744;
+    color: black;
   }
 
   .button--answerbutton:hover {
@@ -171,17 +175,17 @@ h2 {
   }
 }
 
-.setup-container {
-  margin-top: -15px;
-}
-
 .question-container,
 .summary-container {
   padding-top: 20px;
 }
 
-.confirm-container {
-  padding: 20px 100px;
+.confirm-container,
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*--------------------------------------------------------------

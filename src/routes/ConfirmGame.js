@@ -8,9 +8,8 @@ export default function ConfirmGame(props) {
   const { state, dispatch } = useContext(GameContext);
 
   const clearTokenHandler = async () => {
-    localStorage.removeItem("apiToken");
     const newToken = await axios.get(
-      "https://opentdb.com/api_token.php?command=request"
+      `https://opentdb.com/api_token.php?command=reset&token=${state.apiToken}`
     );
     dispatch({
       type: "GET_TOKEN",
@@ -77,12 +76,11 @@ export default function ConfirmGame(props) {
         } else {
           //we had an error from the api
           console.log("oops", response.data.response_code);
-
           dispatch({ type: "LOADING_SUCCESS" });
           //TODO: deal with error somehow
           if (
-            response.data.response_code == 3 ||
-            response.data.response_code == 4
+            response.data.response_code === 3 ||
+            response.data.response_code === 4
           ) {
             clearTokenHandler();
           }
@@ -104,10 +102,7 @@ export default function ConfirmGame(props) {
           {state.selectedDifficulty}
         </span>
       </h1>
-      <button
-        className="button button--setupbutton"
-        onClick={() => startGameHandler()}
-      >
+      <button className="button" onClick={() => startGameHandler()}>
         Start Game
       </button>
     </div>

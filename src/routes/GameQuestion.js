@@ -11,6 +11,8 @@ export default function GameQuestion(props) {
   const [playerAnswer, setPlayerAnswer] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [correctAnswerWords] = useState("Nice.", "Woohoo!", "Right!");
+  const [incorrectAnswerWords] = useState("Sorry.", "Not quite.");
 
   const transition = useTransition(feedback, null, {
     from: { opacity: 0, transform: `translate3d(0, -40px, 0)` },
@@ -38,10 +40,20 @@ export default function GameQuestion(props) {
     if (answer.correct) {
       setCorrect(true);
       dispatch({ type: "SET_SCORE", payload: state.score + 1 });
-      setFeedback("Heck yeah son!");
+      setFeedback(
+        `${
+          correctAnswerWords[
+            Math.floor(Math.random() * correctAnswerWords.length)
+          ]
+        }`
+      );
     } else {
       setFeedback(
-        `Turrible. The correct answer is ${
+        `${
+          incorrectAnswerWords[
+            Math.floor(Math.random() * incorrectAnswerWords.length)
+          ]
+        }. The correct answer is ${
           state.questions[questionindex].answers.find(answer => answer.correct)
             .answer
         }.`

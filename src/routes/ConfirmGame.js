@@ -9,10 +9,10 @@ export default function ConfirmGame(props) {
   const [tokenRetry, setTokenRetry] = useState(0);
 
   const clearTokenHandler = async () => {
-    console.log("token retry called", tokenRetry);
     setTokenRetry(tokenRetry + 1);
+    console.log("token retry called", tokenRetry);
     //first attempt to reset token
-    if (tokenRetry <= 1) {
+    if (tokenRetry === 1) {
       try {
         const resetToken = await axios.get(
           `https://opentdb.com/api_token.php?command=reset&token=${

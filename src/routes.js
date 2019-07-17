@@ -24,12 +24,12 @@ function useRouter() {
 
 const Routes = () => {
   const { state } = useContext(GameContext);
-
-  const percentage = state.gameStarted
-    ? state.gameEnded
-      ? "100%"
-      : ((state.round - 1) / state.rounds) * 100 + "%"
-    : 0;
+  const percentage =
+    state.gameStarted === true
+      ? state.gameEnded === true
+        ? "100%"
+        : ((state.round - 1) / state.rounds) * 100 + "%"
+      : 0;
 
   return (
     <Router>

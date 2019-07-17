@@ -55,19 +55,21 @@ export default function reducer(state, action) {
       };
     }
     case "START_GAME": {
-      localStorage.setItem("gameStarted", true);
+      localStorage.setItem("gameStarted", action.payload);
       return {
         ...state,
-        gameStarted: true
+        gameStarted: action.payload
       };
     }
+
     case "END_GAME": {
-      localStorage.setItem("gameEnded", true);
+      localStorage.setItem("gameEnded", action.payload);
       return {
         ...state,
-        gameEnded: true
+        gameEnded: action.payload
       };
     }
+
     case "SET_ROUND": {
       localStorage.setItem("round", action.payload);
       return {

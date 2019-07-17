@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 //context
 import GameContext from "../context";
 

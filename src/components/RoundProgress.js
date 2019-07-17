@@ -5,7 +5,7 @@ export default function RoundProgress({ gameStarted, progressWidth }) {
     <div className="roundprogress--container">
       <div
         className="roundprogress"
-        style={{ width: gameStarted ? "100%" : "0%" }}
+        style={{ width: gameStarted === true ? "100%" : "0%" }}
       >
         <div className="playerroundprogress" style={{ width: progressWidth }} />
       </div>

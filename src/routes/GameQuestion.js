@@ -26,7 +26,7 @@ export default function GameQuestion(props) {
 
   const nextRoundHandler = () => {
     if (qid === state.questions.length) {
-      dispatch({ type: "END_GAME" });
+      dispatch({ type: "END_GAME", payload: true });
       props.history.push("/summary");
     } else {
       dispatch({ type: "SET_ROUND", payload: state.round + 1 });

@@ -215,8 +215,7 @@ h2 {
 # Categories and Difficulties
 --------------------------------------------------------------*/
 
-.category-grid,
-.difficulties-grid {
+.category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
@@ -225,11 +224,6 @@ h2 {
   .category-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  }
-
-  .difficulties-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   }
 }
 
@@ -240,6 +234,10 @@ h2 {
   list-style: none;
 }
 
+.difficulties-list {
+  padding: 0 20px;
+}
+
 .category-list li,
 .difficulties-list li {
   display: flex;
@@ -248,10 +246,14 @@ h2 {
   margin: 0.25em;
 }
 
+.difficulties-list li {
+  margin: 0.5em;
+}
+
 @media screen and (min-width: 600px) {
   .category-list li,
   .difficulties-list li {
-    margin: 0.5em;
+    margin: 0.6em;
   }
 }
 

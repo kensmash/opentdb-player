@@ -9,6 +9,7 @@ import { useTransition, animated } from "react-spring";
 //components
 import RoundProgress from "./components/RoundProgress";
 //routes
+import Intro from "./routes/Intro";
 import ChooseCategory from "./routes/ChooseCategory";
 import ChooseDifficulty from "./routes/ChooseDifficulty";
 import ConfirmGame from "./routes/ConfirmGame";
@@ -58,7 +59,8 @@ const Main = () => {
   return transitions.map(({ item, props, key }) => (
     <animated.div key={key} style={props}>
       <Switch location={item}>
-        <Route exact path="/" component={ChooseCategory} />
+        <Route exact path="/" component={Intro} />
+        <Route exact path="/category" component={ChooseCategory} />
         <Route exact path="/difficulty" component={ChooseDifficulty} />
         <Route exact path="/confirmgame" component={ConfirmGame} />
         <Route exact path={"/question/:_id"} component={GameQuestion} />

@@ -99,7 +99,7 @@ export default function reducer(state, action) {
         questions: [],
         gameStarted: false,
         gameEnded: false,
-        round: 1,
+        round: 0,
         score: 0
       };
     }

@@ -25,16 +25,17 @@ function useRouter() {
 const Routes = () => {
   const { state } = useContext(GameContext);
   const percentage =
-    state.gameStarted === true
+    state.round >= 1
       ? state.gameEnded === true
         ? "100%"
         : ((state.round - 1) / state.rounds) * 100 + "%"
       : 0;
 
+  //console.log("percentage", percentage, state.gameStarted);
   return (
     <Router>
       <RoundProgress
-        gameStarted={state.gameStarted}
+        gameStarted={state.round >= 1}
         progressWidth={percentage}
       />
       <Main />

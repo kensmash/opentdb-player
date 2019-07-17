@@ -10,7 +10,7 @@ export default function Intro(props) {
     const clearData = async () => {
       dispatch({ type: "START_GAME", payload: false });
       dispatch({ type: "END_GAME", payload: false });
-      dispatch({ type: "SET_ROUND", payload: 1 });
+      dispatch({ type: "SET_ROUND", payload: 0 });
       dispatch({ type: "SET_SCORE", payload: 0 });
     };
     clearData();

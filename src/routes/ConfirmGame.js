@@ -103,6 +103,7 @@ export default function ConfirmGame(props) {
           dispatch({ type: "GET_QUESTIONS", payload: parsedQuestions });
           dispatch({ type: "LOADING_SUCCESS" });
           dispatch({ type: "START_GAME", payload: true });
+          dispatch({ type: "SET_ROUND", payload: 1 });
           //then push to new route
           props.history.push("/question/1");
         } else {

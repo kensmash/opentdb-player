@@ -58,12 +58,8 @@ h2 {
   color: #669744;
 }
 
-.gamemeta p {
-  color: #ccc;
-}
-
-.playerprogress--pointstotal p {
-  color: rgba(255, 255, 255, 0.7);
+.summary-container h1 {
+  margin: 20px 0;
 }
 
 /*--------------------------------------------------------------
@@ -191,11 +187,13 @@ h2 {
 }
 
 .content-container {
+  margin-top: -20px;
   padding: 0 10px 10px;
 }
 
 @media screen and (min-width: 600px) {
   .content-container {
+    margin-top: 0;
     padding: 0 30px 30px;
   }
 }

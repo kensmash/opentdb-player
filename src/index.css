@@ -90,12 +90,23 @@ h2 {
   width: 100%;
 }
 
+.button--confirmbutton {
+  margin-top: 20px;
+}
+
 .button--answerbutton,
 .button--disabledbutton {
   background: white;
   color: black;
   width: 100%;
-  margin: 0.5em 0;
+  margin: 0.25em 0;
+}
+
+@media screen and (min-width: 600px) {
+  .button--answerbutton,
+  .button--disabledbutton {
+    margin: 0.5em 0;
+  }
 }
 
 .button--answerbutton:active {
@@ -113,17 +124,27 @@ h2 {
 }
 
 .button--correctanswer {
-  margin: 0.5em 0;
+  margin: 0.25em 0;
   width: 100%;
   background: #669744;
   color: white;
 }
 
 .button--incorrectanswer {
-  margin: 0.5em 0;
+  margin: 0.25em 0;
   width: 100%;
   background: #951014;
   color: white;
+}
+
+@media screen and (min-width: 600px) {
+  .button--correctanswer {
+    margin: 0.5em 0;
+  }
+
+  .button--incorrectanswer {
+    margin: 0.5em 0;
+  }
 }
 
 .button:focus,
@@ -140,13 +161,17 @@ h2 {
 --------------------------------------------------------------*/
 
 @media (hover: hover) {
+  .button--confirmbutton:hover,
+  .button--confirmbutton:focus,
   .button--setupbutton:hover,
   .button--setupbutton:focus {
+    transform: scale(1.02);
     background: white;
     color: black;
   }
 
   .button--answerbutton:hover {
+    transform: scale(1.02);
     background: #669744;
     color: white;
   }
@@ -189,35 +214,6 @@ h2 {
 }
 
 /*--------------------------------------------------------------
-# Game Round Progress
---------------------------------------------------------------*/
-.roundprogress--container {
-  padding: 20px 20px 15px;
-}
-
-@media screen and (min-width: 600px) {
-  .roundprogress--container {
-    padding: 30px 30px 15px;
-  }
-}
-
-.roundprogress {
-  transition: width 400ms ease;
-  position: relative;
-  height: 8px;
-  background: rgba(100, 100, 100, 0.5);
-  border-radius: 0.5rem;
-}
-
-.playerroundprogress {
-  transition: width 400ms ease;
-  position: absolute;
-  height: 8px;
-  background: #1565c0;
-  border-radius: 0.5rem;
-}
-
-/*--------------------------------------------------------------
 # Categories and Difficulties
 --------------------------------------------------------------*/
 
@@ -251,7 +247,14 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5em;
+  margin: 0.25em;
+}
+
+@media screen and (min-width: 600px) {
+  .category-list li,
+  .difficulties-list li {
+    margin: 0.5em;
+  }
 }
 
 .difficulties-list li {
@@ -279,15 +282,49 @@ h2 {
 }
 
 /*--------------------------------------------------------------
+# Game Round Progress
+--------------------------------------------------------------*/
+.roundprogress--container {
+  padding: 20px 20px 15px;
+}
+
+@media screen and (min-width: 600px) {
+  .roundprogress--container {
+    padding: 30px 30px 15px;
+  }
+}
+
+.roundprogress {
+  transition: width 400ms ease;
+  position: relative;
+  height: 8px;
+  background: rgba(100, 100, 100, 0.5);
+  border-radius: 0.5rem;
+}
+
+.playerroundprogress {
+  transition: width 400ms ease;
+  position: absolute;
+  height: 8px;
+  background: #1565c0;
+  border-radius: 0.5rem;
+}
+
+/*--------------------------------------------------------------
 # Feedback
 --------------------------------------------------------------*/
 
 .feedback-container {
-  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+  .feedback-container {
+    padding: 30px;
+  }
 }
 
 .feedback-text {

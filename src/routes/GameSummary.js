@@ -29,7 +29,10 @@ export default function Summary(props) {
         {playerfeedback} You got {state.score} out of {state.rounds} correct.
       </h1>
 
-      <button className="button" onClick={() => resetHandler()}>
+      <button
+        className="button button--confirmbutton"
+        onClick={() => resetHandler()}
+      >
         New Game
       </button>
     </div>

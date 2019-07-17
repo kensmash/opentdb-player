@@ -9,27 +9,48 @@ export default function ConfirmGame(props) {
   const [tokenRetry, setTokenRetry] = useState(0);
 
   const clearTokenHandler = async () => {
+    console.log("token retry called", tokenRetry);
     setTokenRetry(tokenRetry + 1);
-    if (tokenRetry <= 2) {
-      const newToken = await axios.get(
-        `https://opentdb.com/api_token.php?command=reset&token=${
-          state.apiToken
-        }`
-      );
-      dispatch({
-        type: "GET_TOKEN",
-        payload: newToken.data.token
-      });
-      startGameHandler();
+    //first attempt to reset token
+    if (tokenRetry <= 1) {
+      try {
+        const resetToken = await axios.get(
+          `https://opentdb.com/api_token.php?command=reset&token=${
+            state.apiToken
+          }`
+        );
+        dispatch({
+          type: "GET_TOKEN",
+          payload: resetToken.data.token
+        });
+        startGameHandler();
+      } catch (error) {
+        dispatch({
+          type: "LOADING_ERROR"
+        });
+      }
     } else {
-      localStorage.removeItem("apiToken");
-      return startGameHandler();
+      try {
+        //else try get new token
+        const newToken = await axios.get(
+          "https://opentdb.com/api_token.php?command=request"
+        );
+        dispatch({
+          type: "GET_TOKEN",
+          payload: newToken.data.token
+        });
+        startGameHandler();
+      } catch (error) {
+        dispatch({
+          type: "LOADING_ERROR"
+        });
+      }
     }
   };
 
   const startGameHandler = async () => {
     let token, difficulty;
-    if (state.apiToken) {
+    if (state.apiToken && tokenRetry <= 1) {
       token = `&token=${state.apiToken}`;
     }
     if (state.selectedDifficulty !== "any") {
@@ -40,7 +61,7 @@ export default function ConfirmGame(props) {
     const request = `https://opentdb.com/api.php?amount=7&category=${
       state.selectedCategory.id
     }${difficulty}${token}`;
-    console.log("request", request);
+
     try {
       axios.get(request).then(response => {
         //on success

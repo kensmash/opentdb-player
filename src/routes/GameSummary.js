@@ -7,6 +7,7 @@ export default function Summary(props) {
 
   const resetHandler = async () => {
     props.history.push("/category");
+    dispatch({ type: "RESET_ROUND" });
     dispatch({ type: "RESET_GAME" });
   };
 

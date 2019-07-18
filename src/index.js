@@ -93,13 +93,7 @@ const App = () => {
 
   return (
     <GameContext.Provider value={{ state, dispatch }}>
-      {state.isLoading ? (
-        <div>loading...</div>
-      ) : state.loadingError ? (
-        <div>something went wrong</div>
-      ) : (
-        <Routes />
-      )}
+      {state.isLoading === true ? <div>loading...</div> : <Routes />}
     </GameContext.Provider>
   );
 };

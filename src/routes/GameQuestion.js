@@ -63,6 +63,7 @@ export default function GameQuestion(props) {
   if (qid === state.questions.length) {
     advanceText = "Finish Game";
   }
+
   return (
     <div className="content-container question-container">
       <h2>{state.questions[questionindex].question}</h2>

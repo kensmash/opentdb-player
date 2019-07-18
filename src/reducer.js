@@ -61,7 +61,6 @@ export default function reducer(state, action) {
         gameStarted: action.payload
       };
     }
-
     case "END_GAME": {
       localStorage.setItem("gameEnded", action.payload);
       return {

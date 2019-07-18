@@ -95,6 +95,7 @@ export default function ConfirmGame(props) {
           state.apiToken
         }`
       );
+
       dispatch({
         type: "GET_TOKEN",
         payload: resetToken.data.token

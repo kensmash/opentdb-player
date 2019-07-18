@@ -35,7 +35,7 @@ export default function Intro(props) {
         >
           Start
         </button>
-        <h4>
+        <p>
           Trivia Questions from the{" "}
           <a
             href="https://opentdb.com"
@@ -44,7 +44,7 @@ export default function Intro(props) {
           >
             Open Trivia Database
           </a>
-        </h4>
+        </p>
       </div>
     </div>
   );

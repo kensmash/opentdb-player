@@ -362,7 +362,7 @@ h2 {
 
 .introanimation h1 {
   font-family: monospace;
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: white;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   border-right: 0.15em solid orange; /* The typewriter cursor */
@@ -410,10 +410,10 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 
-.intro-content-container h4 {
+.intro-content-container p {
   color: white;
   padding-top: 20px;
   text-align: center;

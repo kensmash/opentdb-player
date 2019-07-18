@@ -83,13 +83,6 @@ export default function reducer(state, action) {
         correct: false
       };
     }
-    case "SET_FEEDBACK": {
-      localStorage.setItem("feedback", action.payload);
-      return {
-        ...state,
-        feedback: action.payload
-      };
-    }
     case "END_GAME": {
       localStorage.setItem("gameEnded", action.payload);
       return {

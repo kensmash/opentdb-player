@@ -66,6 +66,25 @@ const App = () => {
         if (localGameStarted) {
           dispatch({ type: "START_GAME", payload: localGameStarted });
         }
+        //answered, player answer, correct
+        const localAnswered = localStorage.getItem("answered");
+        const localAnswer = localStorage.getItem("playerAnswer");
+        const localCorrect = localStorage.getItem("correct");
+        if (localAnswered && localAnswer) {
+          dispatch({
+            type: "PLAYER_ANSWERED",
+            payload: { answer: localAnswer, correct: localCorrect }
+          });
+        } else {
+          dispatch({
+            type: "RESET_ROUND"
+          });
+        }
+        //feedback
+        const localFeedback = localStorage.getItem("feedback");
+        if (localFeedback) {
+          dispatch({ type: "SET_FEEDBACK", payload: localFeedback });
+        }
         //game ended
         const localGameEnded = localStorage.getItem("gameEnded");
         if (localGameEnded) {

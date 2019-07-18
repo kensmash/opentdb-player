@@ -7,17 +7,14 @@ import GameContext from "../context";
 
 export default function GameQuestion(props) {
   const { state, dispatch } = useContext(GameContext);
-  const [answered, setAnswered] = useState(false);
-  const [playerAnswer, setPlayerAnswer] = useState(false);
-  const [correct, setCorrect] = useState(false);
-  const [feedback, setFeedback] = useState("");
   const [correctAnswerWords] = useState(["Nice.", "Woohoo!", "Right!"]);
+  const [feedback, setFeedback] = useState("");
   const [incorrectAnswerWords] = useState(["Sorry.", "Not quite."]);
 
-  const transition = useTransition(feedback, null, {
+  const transition = useTransition(state.answered, null, {
     from: { opacity: 0, transform: `translate3d(0, -40px, 0)` },
     enter: { opacity: 1, transform: `translate3d(0, 0px, 0)` },
-    leave: { opacity: 0, transform: `translate3d(0, -40px, 0)` }
+    leave: { opacity: 0, transform: `translate3d(0, 40px, 0)` }
   });
 
   const qid = Number(props.match.params._id);
@@ -31,20 +28,20 @@ export default function GameQuestion(props) {
     } else {
       dispatch({ type: "SET_ROUND", payload: state.round + 1 });
       props.history.push(`/question/${nextquestion}`);
+      dispatch({ type: "RESET_ROUND" });
+      dispatch({ type: "SET_FEEDBACK", payload: "" });
     }
   };
 
   const submitAnswerHandler = answer => {
-    setAnswered(true);
-    setPlayerAnswer(answer.answer);
+    dispatch({ type: "PLAYER_ANSWERED", payload: answer });
     if (answer.correct) {
-      setCorrect(true);
-      dispatch({ type: "SET_SCORE", payload: state.score + 1 });
       setFeedback(
         correctAnswerWords[
           Math.floor(Math.random() * correctAnswerWords.length)
         ]
       );
+      dispatch({ type: "SET_SCORE", payload: state.score + 1 });
     } else {
       setFeedback(
         `${
@@ -69,9 +66,9 @@ export default function GameQuestion(props) {
       <h2>{state.questions[questionindex].question}</h2>
       <Answers
         answers={state.questions[questionindex].answers}
-        answered={answered}
-        playerAnswer={playerAnswer}
-        correct={correct}
+        answered={state.answered}
+        playerAnswer={state.playerAnswer}
+        correct={state.correct}
         submitAnswerHandler={answer => submitAnswerHandler(answer)}
       />
       {transition.map(

@@ -14,13 +14,17 @@ export default function ConfirmGame(props) {
     if (state.apiToken) {
       token = `&token=${state.apiToken}`;
     }
+
+    let request = `https://opentdb.com/api.php?amount=7&category=${
+      state.selectedCategory.id
+    }${token}`;
+
     if (state.selectedDifficulty !== "any") {
       difficulty = `&difficulty=${state.selectedDifficulty}`;
+      request = `https://opentdb.com/api.php?amount=7&category=${
+        state.selectedCategory.id
+      }${difficulty}${token}`;
     }
-    //fetch questions
-    const request = `https://opentdb.com/api.php?amount=7&category=${
-      state.selectedCategory.id
-    }${difficulty}${token}`;
 
     try {
       axios.get(request).then(response => {

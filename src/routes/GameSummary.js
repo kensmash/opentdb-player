@@ -6,8 +6,8 @@ export default function Summary(props) {
   const { state, dispatch } = useContext(GameContext);
 
   const resetHandler = async () => {
-    dispatch({ type: "RESET_GAME" });
     props.history.push("/category");
+    dispatch({ type: "RESET_GAME" });
   };
 
   let playerfeedback = "";

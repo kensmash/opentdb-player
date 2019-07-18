@@ -11,6 +11,10 @@ const GameContext = React.createContext({
   difficulties: ["easy", "medium", "hard", "any"],
   questions: [],
   gameStarted: false,
+  feedback: "",
+  answered: false,
+  playerAnswer: "",
+  correct: false,
   gameEnded: false,
   round: 0,
   score: 0

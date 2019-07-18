@@ -61,6 +61,35 @@ export default function reducer(state, action) {
         gameStarted: action.payload
       };
     }
+    case "PLAYER_ANSWERED": {
+      localStorage.setItem("answered", true);
+      localStorage.setItem("playerAnswer", action.payload.answer);
+      localStorage.setItem("correct", action.payload.correct ? true : false);
+      return {
+        ...state,
+        answered: true,
+        playerAnswer: action.payload.answer,
+        correct: action.payload.correct ? true : false
+      };
+    }
+    case "RESET_ROUND": {
+      localStorage.setItem("answered", false);
+      localStorage.setItem("playerAnswer", "");
+      localStorage.setItem("correct", false);
+      return {
+        ...state,
+        answered: false,
+        playerAnswer: "",
+        correct: false
+      };
+    }
+    case "SET_FEEDBACK": {
+      localStorage.setItem("feedback", action.payload);
+      return {
+        ...state,
+        feedback: action.payload
+      };
+    }
     case "END_GAME": {
       localStorage.setItem("gameEnded", action.payload);
       return {
@@ -68,7 +97,6 @@ export default function reducer(state, action) {
         gameEnded: action.payload
       };
     }
-
     case "SET_ROUND": {
       localStorage.setItem("round", action.payload);
       return {

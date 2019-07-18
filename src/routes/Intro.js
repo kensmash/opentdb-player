@@ -9,6 +9,8 @@ export default function Intro(props) {
   useEffect(() => {
     const clearData = async () => {
       dispatch({ type: "START_GAME", payload: false });
+      dispatch({ type: "RESET_ROUND" });
+      dispatch({ type: "SET_FEEDBACK", payload: "" });
       dispatch({ type: "END_GAME", payload: false });
       dispatch({ type: "SET_ROUND", payload: 0 });
       dispatch({ type: "SET_SCORE", payload: 0 });

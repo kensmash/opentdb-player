@@ -8,10 +8,12 @@ export default function ConfirmGame(props) {
   const { state, dispatch } = useContext(GameContext);
   const [questionsLoading, setQuestionsLoading] = useState(false);
 
-  const startGameHandler = async () => {
+  const startGameHandler = async newToken => {
     setQuestionsLoading(true);
     let token, difficulty;
-    if (state.apiToken) {
+    if (newToken) {
+      token = `&token=${newToken}`;
+    } else {
       token = `&token=${state.apiToken}`;
     }
 
@@ -110,7 +112,6 @@ export default function ConfirmGame(props) {
 
   const newTokenHandler = async () => {
     try {
-      //else try get new token
       const newToken = await axios.get(
         "https://opentdb.com/api_token.php?command=request"
       );
@@ -118,7 +119,7 @@ export default function ConfirmGame(props) {
         type: "GET_TOKEN",
         payload: newToken.data.token
       });
-      startGameHandler();
+      startGameHandler(newToken.data.token);
     } catch (error) {
       dispatch({
         type: "LOADING_ERROR"

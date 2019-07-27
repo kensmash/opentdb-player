@@ -11,6 +11,8 @@ export default function ConfirmGame(props) {
   const startGameHandler = async newToken => {
     setQuestionsLoading(true);
     let token, difficulty;
+    //dispatching new token to context does not seem to work - race condition?
+    //so pass new token to function instead
     if (newToken) {
       token = `&token=${newToken}`;
     } else {
